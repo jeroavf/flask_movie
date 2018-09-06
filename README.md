@@ -1,4 +1,6 @@
+### Aplicacao basica para enteder o funcionamento do flask associado a um template bootstrap  
 * Estrutura inicial  
+
 
 >> $ cd app_path   
 >> $ mkdir -p static/css  

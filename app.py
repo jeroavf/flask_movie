@@ -32,7 +32,10 @@ class User(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('add_user.html')
+    myUser = User.query.all() 
+    oneItem = User.query.filter_by(username="teste").first()
+    # abaixo , comando para renderizar a pagina passando apos o nome do template , os objetos que serão exibidos
+    return render_template('add_user.html', myUser=myUser , oneItem=oneItem)
 
 @app.route('/post_user' , methods=['POST'])
 def post_user():
