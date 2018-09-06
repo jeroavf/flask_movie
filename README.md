@@ -1,4 +1,4 @@
-### Aplicacao basica para enteder o funcionamento do flask associado a um template bootstrap  
+### Aplicacao basica para entender o funcionamento do flask associado a um template bootstrap  
 * Estrutura inicial  
 
 

@@ -45,6 +45,11 @@ def post_user():
     # o url_for pega o nome da funcao responsavel pela renderizacao da pagina de retorno 
     return redirect(url_for('index'))
 
+#O nome que será enviado na url , precisa estar definido como parametro da funcção associada a rota 
+@app.route('/profile/<username>')
+def profile(username):
+    user=User.query.filter_by(username=username).first() 
+    return render_template('profile.html' , user = user)
 
 if __name__ == "__main__":
     app.run()
