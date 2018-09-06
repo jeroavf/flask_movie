@@ -20,9 +20,11 @@
 >>        app.run()    
 
 - Bibliotecas   
- pip install flask  
- pip install Flask-SQLAlchemy  
- pip install psycopg2  
+ pip install flask    
+ pip install Flask-SQLAlchemy    
+ pip install psycopg2    
+ pip install flask-security    
+ pip install bcrypt    
 
 
 - Banco de dados postgres rodando em container   
@@ -41,3 +43,5 @@ $ python
 
 >>> from app import db   
 >>> db.create_all()  
+
+- Uso do flask-security

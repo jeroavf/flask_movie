@@ -3,39 +3,60 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 from flask import request 
 from flask import redirect , url_for
+from flask_security  import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin, login_required 
+
 
 
 app = Flask(__name__)
 
 ## DB 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@10.221.125.108/flaskmovie'
-app.debug = True
+app.config['SECRET_KEY'] = 'super-secret'
+app.config['SECURITY_REGISTERABLE'] = True
+app.config['SECURITY_PASSWORD_SALT'] = "double salting" 
+
 db = SQLAlchemy(app)
 
 
 
-class User(db.Model):
-    id = db.Column(db.Integer , primary_key = True)
-    username = db.Column(db.String(80) , unique = True  )
-    email = db.Column(db.String(120), unique=True  )
+# Define models
+roles_users = db.Table('roles_users',
+        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
-    def __init__(self, username,email):
-        self.username = username
-        self.email = email
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
 
-    def __repr__(self):
-        return '<User %r >' % self.username 
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True)
+    password = db.Column(db.String(255))
+    active = db.Column(db.Boolean())
+    confirmed_at = db.Column(db.DateTime())
+    roles = db.relationship('Role', secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic'))
 
+
+#Setup Flask_security 
+user_datastore = SQLAlchemyUserDatastore(db,User,Role)
+security = Security(app,user_datastore)
+
+#Create a user to test with 
+#app.before_first_request
+#def create_user():
+#    db.create_all()
+#    user_datastore.create_user(email='teste@gmail.com' , password = 'teste')
+#    db.session.commit()
 
 ## Fim DB 
 
 
 @app.route('/')
 def index():
-    myUser = User.query.all() 
-    oneItem = User.query.filter_by(username="teste").first()
     # abaixo , comando para renderizar a pagina passando apos o nome do template , os objetos que serão exibidos
-    return render_template('add_user.html', myUser=myUser , oneItem=oneItem)
+    return render_template('add_user.html')
 
 @app.route('/post_user' , methods=['POST'])
 def post_user():
