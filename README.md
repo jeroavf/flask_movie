@@ -1,3 +1,22 @@
+### Estrutura inicial 
+$ cd app_path 
+$ mkdir -p static/css
+$ mkdir -p static/images
+$ mkdir -p static/js
+$ mkdir -p templates 
+$ vi app.py
+    from flask import Flask 
+    from flask_sqlalchemy import SQLAlchemy
+    app = Flask(__name__)
+
+    @app.route('/')
+    def index():
+        return "<h1 style='color: red'>hello Flask</h1>"
+
+    if __name__ == "__main__":
+        app.run()
+
+
 - Banco de dados postgres rodando em container 
 docker run --name postgres -e POSTGRES_PASSWORD='1234' -d postgres
 
