@@ -1,9 +1,15 @@
 * Estrutura inicial 
+
 >> $ cd app_path 
+
 >> $ mkdir -p static/css
+
 >> $ mkdir -p static/images
+
 >> $ mkdir -p static/js
+
 >> $ mkdir -p templates 
+
 >> $ vi app.py
 
 
@@ -37,5 +43,6 @@ docker run -p 8000:80  -e "PGADMIN_DEFAULT_EMAIL=usuario@a.com"  -e "PGADMIN_DEF
 
 - Criando a tabela do usuario 
 $ python 
+
 >>> from app import db 
 >>> db.create_all()

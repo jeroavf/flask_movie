@@ -1,12 +1,19 @@
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
+from flask import render_template
+from flask import request 
+from flask import redirect , url_for
 
 
 app = Flask(__name__)
 
 ## DB 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@10.221.125.108/flaskmovie'
+app.debug = True
 db = SQLAlchemy(app)
+
+
+
 class User(db.Model):
     id = db.Column(db.Integer , primary_key = True)
     username = db.Column(db.String(80) , unique = True  )
@@ -25,7 +32,16 @@ class User(db.Model):
 
 @app.route('/')
 def index():
-    return "<h1 style='color: red'>hello Flask</h1>"
+    return render_template('add_user.html')
+
+@app.route('/post_user' , methods=['POST'])
+def post_user():
+    user=User(request.form['username'] , request.form['email'])
+    db.session.add(user)
+    db.session.commit()
+    # o url_for pega o nome da funcao responsavel pela renderizacao da pagina de retorno 
+    return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run()
