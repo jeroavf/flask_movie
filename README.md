@@ -13,21 +13,27 @@
 >> $ vi app.py
 
 
->>    from flask import Flask 
->>    from flask_sqlalchemy import SQLAlchemy
->>    app = Flask(__name__)
->>
->>    @app.route('/')
->>    def index():
->>        return "<h1 style='color: red'>hello Flask</h1>"
->>
->>    if __name__ == "__main__":
->>        app.run()
+>>    from flask import Flask   
 
-- Bibliotecas 
- pip install flask
- pip install Flask-SQLAlchemy
- pip install psycopg2
+>>    from flask_sqlalchemy import SQLAlchemy  
+
+>>    app = Flask(__name__)  
+
+>>
+>>    @app.route('/')  
+
+>>    def index():  
+
+>>        return "<h1 style='color: red'>hello Flask</h1>"  
+
+>>
+>>    if __name__ == "__main__":  
+>>        app.run()  
+
+- Bibliotecas   
+ pip install flask  
+ pip install Flask-SQLAlchemy  
+ pip install psycopg2  
 
 
 - Banco de dados postgres rodando em container 
