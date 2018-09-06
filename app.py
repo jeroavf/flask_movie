@@ -67,9 +67,10 @@ def post_user():
     return redirect(url_for('index'))
 
 #O nome que será enviado na url , precisa estar definido como parametro da funcção associada a rota 
-@app.route('/profile/<username>')
-def profile(username):
-    user=User.query.filter_by(username=username).first() 
+@app.route('/profile/<email>')
+@login_required        # o acesso a esta url agora está restrito a quem estiver logado 
+def profile(email):
+    user=User.query.filter_by(email=email).first() 
     return render_template('profile.html' , user = user)
 
 if __name__ == "__main__":
