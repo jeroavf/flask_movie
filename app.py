@@ -10,10 +10,11 @@ from flask_security  import Security, SQLAlchemyUserDatastore, UserMixin, RoleMi
 app = Flask(__name__)
 
 ## DB 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@10.221.125.108/flaskmovie'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@192.168.25.25/flaskmovie'
 app.config['SECRET_KEY'] = 'super-secret'
 app.config['SECURITY_REGISTERABLE'] = True
 app.config['SECURITY_PASSWORD_SALT'] = "double salting" 
+app.debug = True
 
 db = SQLAlchemy(app)
 
