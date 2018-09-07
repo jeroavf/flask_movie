@@ -45,3 +45,5 @@ $ python
 >>> db.create_all()  
 
 - Uso do flask-security
+
+- Utilização do template bootstrap disponivel em 07/07/2018 no site https://startbootstrap.com/template-overviews/freelancer/

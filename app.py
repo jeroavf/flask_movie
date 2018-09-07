@@ -56,7 +56,7 @@ security = Security(app,user_datastore)
 @app.route('/')
 def index():
     # abaixo , comando para renderizar a pagina passando apos o nome do template , os objetos que serão exibidos
-    return render_template('add_user.html')
+    return render_template('index.html')
 
 @app.route('/post_user' , methods=['POST'])
 def post_user():
