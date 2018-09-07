@@ -1,4 +1,8 @@
 ### Aplicacao basica para entender o funcionamento do flask associado a um template bootstrap  
+* Esta aplicacao é baseada no tutorial em video de Chris Hawkes disponível em https://www.youtube.com/playlist?list=PLei96ZX_m9sWQco3fwtSMqyGL-JDQo28l
+
+
+
 * Estrutura inicial  
 
 
